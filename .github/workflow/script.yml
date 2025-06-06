@@ -1,0 +1,27 @@
+name: Deploy Script to Test Environment
+
+on:
+  push:
+    branches:
+      - main # Or your development branch
+
+jobs:
+  deploy:
+    name: Deploy Script
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: SSH and Copy Script
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.TEST_SERVER_IP }}
+          username: ${{ secrets.TEST_SERVER_USER }}
+          key: ${{ secrets.TEST_SERVER_PRIVATE_KEY }}
+          port: ${{ secrets.TEST_SERVER_PORT }} # Optional, defaults to 22
+          script: |
+            scp ${{ github.workspace }}/path/to/your/script.sh ${{ secrets.TEST_SERVER_USER }}@${{ secrets.TEST_SERVER_IP }}:/path/to/destination/on/test/server/
+            # Optional: Execute the script on the test server
+            # ssh ${{ secrets.TEST_SERVER_USER }}@${{ secrets.TEST_SERVER_IP }} -i ${{ secrets.TEST_SERVER_PRIVATE_KEY }} -p ${{ secrets.TEST_SERVER_PORT }} "cd /path/to/destination/on/test/server/ && chmod +x script.sh && ./script.sh"
