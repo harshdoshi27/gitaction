@@ -7,14 +7,14 @@ jobs:
   job-1:
     runs-on: ubuntu-24.04
     steps:
-      - run: "Job1 adding dependency"
-      - run: "Job1 adding more code"
+      - run: echo "Job1 adding dependency"
+      - run: echo "Job1 adding more code"
 
   job-2:  
     runs-on:  ubuntu-24.04
     steps:
-    - run: "Job2 adding dependency"
-    - run: "Multiple jobs can run in parallel"
+    - run: echo "Job2 adding dependency"
+    - run: echo "Multiple jobs can run in parallel"
 
   job-3:  
     runs-on:  ubuntu-24.04
@@ -22,8 +22,8 @@ jobs:
       - job-1
       - job-2
     steps:
-    - run: "Job2 adding dependency"
-    - run: "Multiple jobs can run in parallel"
+    - run: echo "Job2 adding dependency"
+    - run: echo "Multiple jobs can run in parallel"
 
   job-4:
     runs-on: ubuntu-24.04
