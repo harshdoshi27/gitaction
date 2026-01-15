@@ -1,0 +1,16 @@
+name: Step Action
+
+on:
+  workflow_dispatch
+
+jobs:
+  say-hello-bash:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "Hellow world"
+  
+  say-hello-inline-python:
+    runs-on: ubuntu-24.04
+    steps:  
+      - run: print("Hellow world")
+        shell: python
